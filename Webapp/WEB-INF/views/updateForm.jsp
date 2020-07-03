@@ -13,7 +13,7 @@
 		전화번호를 수정하려면 <br>아래 항목을 입력하고 "수정"버튼을 클릭하세요
 	</p>
 
-	<form action="/phonebook3/phone/update" method="get">
+	<form action="${pageContext.request.contextPath }/phone/update" method="get">
 
 		이름(name): <input type="text" name="name" value=${vo.name }> <br>
 		핸드폰(hp): <input type="text" name="hp" value=${vo.hp }> <br>
@@ -23,7 +23,7 @@
 	</form>
 	
 	<p>
-		<a href="/phonebook3/phone/list">리스트로 바로가기</a>
+		<a href="${pageContext.request.contextPath }/phone/list">리스트로 바로가기</a>
 	</p>
 </body>
 </html>

@@ -11,7 +11,8 @@
 <body>
 	<h1>전화번호 리스트</h1>
 	<p>입력된 정보 내역입니다.</p>
-
+	
+	
 	<c:forEach items="${pList }" var="vo">
 		<table border="1">
 			<colgroup>
@@ -32,15 +33,15 @@
 					<td>${vo.company }</td>
 				</tr>
 				<tr>
-					<td><a href="/phonebook3/phone/updateForm?personId=${vo.personId }">수정</a></td>
-					<td><a href="/phonebook3/phone/delete?personId=${vo.personId }">삭제</a></td>
+					<td><a href="${pageContext.request.contextPath }/phone/updateForm/${vo.personId }">수정</a></td>
+					<td><a href="${pageContext.request.contextPath }/phone/delete/${vo.personId }">삭제</a></td>
 				</tr>
 			</tbody>
 		</table>
 		<br>
 	</c:forEach>
 
-	<a href="/phonebook3/phone/writeForm">리스트 추가하기</a>
+	<a href="${pageContext.request.contextPath }/phone/writeForm">리스트 추가하기</a>
 	<%--(주석)상대경로 지정 --%>
 
 </body>

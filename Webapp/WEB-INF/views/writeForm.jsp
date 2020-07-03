@@ -13,7 +13,7 @@
 		전화번호를 등록하려면<br> 아래 항목을 기입하고 "등록" 버튼을 클릭하세요.
 	</p>
 
-	<form action="/phonebook3/phone/write" method="get">
+	<form action="${pageContext.request.contextPath }/phone/write" method="get">
 		
 		이름(name): <input type="text" name="name" value=""> <br>
 		핸드폰(hp): <input type="text" name="hp"	value=""><br>
@@ -23,7 +23,7 @@
 	</form>
 
 	<p>
-		<a href="/phonebook3/phone/list">리스트로 바로가기</a>
+		<a href="${pageContext.request.contextPath }/phone/list">리스트로 바로가기</a>
 	</p>
 </body>
 </html>

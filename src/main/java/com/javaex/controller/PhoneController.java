@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -24,13 +25,13 @@ public class PhoneController {
 
 		model.addAttribute("pList", pList);
 
-		return "/WEB-INF/views/list.jsp";
+		return "list";
 	}
 
 	@RequestMapping(value = "/writeForm", method = { RequestMethod.GET, RequestMethod.POST })
 	public String writeForm() {
 
-		return "/WEB-INF/views/writeForm.jsp";
+		return "writeForm";
 	}
 
 	//----------모델방식-------------
@@ -55,14 +56,15 @@ public class PhoneController {
 	}
 	*/
 	
-	@RequestMapping("/delete")
-	public String delete(@RequestParam("personId") int personId) {
+	@RequestMapping("/delete/{personId}")
+	public String delete(@PathVariable("personId") int num) {
 		PhoneDao phoneDao = new PhoneDao();
-		phoneDao.personDelete(personId);
+		phoneDao.personDelete(num);
 		
 		return "redirect:/phone/list";
 	} 
 	
+	/*
 	@RequestMapping("/updateForm")
 	public String UpdateForm(Model model,@RequestParam("personId") int personId) {
 		PhoneDao phoneDao = new PhoneDao();
@@ -71,6 +73,16 @@ public class PhoneController {
 		model.addAttribute("vo",personvo);
 		
 		return "/WEB-INF/views/updateForm.jsp";
+	}*/
+	
+	@RequestMapping("/updateForm/{personId}")
+	public String UpdateForm(Model model,@PathVariable("personId") int num) {
+		PhoneDao phoneDao = new PhoneDao();
+		PersonVo personvo = phoneDao.getPerson(num);
+		
+		model.addAttribute("vo",personvo);
+		
+		return "updateForm";
 	}
 	
 	@RequestMapping("/update")
@@ -79,6 +91,6 @@ public class PhoneController {
 		
 		phoneDao.personUpdate(personvo);
 		
-		return "";
+		return "redirect:/phone/list";
 	}
 }
