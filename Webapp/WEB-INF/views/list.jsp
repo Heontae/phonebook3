@@ -33,8 +33,8 @@
 					<td>${vo.company }</td>
 				</tr>
 				<tr>
-					<td><a href="${pageContext.request.contextPath }/phone/updateForm/${vo.personId }">수정</a></td>
-					<td><a href="${pageContext.request.contextPath }/phone/delete/${vo.personId }">삭제</a></td>
+					<td><a href="${pageContext.request.contextPath }/phone/updateForm2?personId=${vo.personId}">수정</a></td>
+					<td><a href="${pageContext.request.contextPath }/phone/delete?personId=${vo.personId}">삭제</a></td>
 				</tr>
 			</tbody>
 		</table>
