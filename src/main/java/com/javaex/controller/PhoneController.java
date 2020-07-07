@@ -2,13 +2,13 @@ package com.javaex.controller;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import com.javaex.dao.PhoneDao;
 import com.javaex.vo.PersonVo;
@@ -16,18 +16,20 @@ import com.javaex.vo.PersonVo;
 @Controller
 @RequestMapping("/phone")
 public class PhoneController {
-
+	
+	@Autowired
+	PhoneDao phoneDao;
+	
 	@RequestMapping(value = "/list", method = { RequestMethod.GET, RequestMethod.POST })
 	public String list(Model model) {
 
-		PhoneDao phoneDao = new PhoneDao();
-		List<PersonVo> pList = phoneDao.getPersonList("");
-
+		List<PersonVo> pList = phoneDao.getPersonList();
+		System.out.println(pList.toString());
 		model.addAttribute("pList", pList);
-
+		
 		return "list";
 	}
-
+/*
 	@RequestMapping(value = "/writeForm", method = { RequestMethod.GET, RequestMethod.POST })
 	public String writeForm() {
 
@@ -38,7 +40,6 @@ public class PhoneController {
 	@RequestMapping(value = "/write", method = RequestMethod.GET)
 	public String write(@ModelAttribute PersonVo personVo) {
 
-		PhoneDao phoneDao = new PhoneDao();
 		phoneDao.personInsert(personVo);
 		return "redirect:/phone/list";
 	}
@@ -55,10 +56,9 @@ public class PhoneController {
 		return "";
 	}
 	*/
-	
+	/*
 	@RequestMapping("/delete/{personId}")
 	public String delete(@PathVariable("personId") int num) {
-		PhoneDao phoneDao = new PhoneDao();
 		phoneDao.personDelete(num);
 		
 		return "redirect:/phone/list";
@@ -67,17 +67,15 @@ public class PhoneController {
 	/*
 	@RequestMapping("/updateForm")
 	public String UpdateForm(Model model,@RequestParam("personId") int personId) {
-		PhoneDao phoneDao = new PhoneDao();
 		PersonVo personvo = phoneDao.getPerson(personId);
 		
 		model.addAttribute("vo",personvo);
 		
 		return "/WEB-INF/views/updateForm.jsp";
 	}*/
-	
+	/*
 	@RequestMapping("/updateForm/{personId}")
 	public String UpdateForm(Model model,@PathVariable("personId") int num) {
-		PhoneDao phoneDao = new PhoneDao();
 		PersonVo personvo = phoneDao.getPerson(num);
 		
 		model.addAttribute("vo",personvo);
@@ -87,10 +85,10 @@ public class PhoneController {
 	
 	@RequestMapping("/update")
 	public String Update(@ModelAttribute PersonVo personvo) {
-		PhoneDao phoneDao = new PhoneDao();
 		
 		phoneDao.personUpdate(personvo);
 		
 		return "redirect:/phone/list";
 	}
+	*/
 }

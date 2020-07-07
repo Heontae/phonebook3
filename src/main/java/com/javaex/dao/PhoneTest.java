@@ -9,7 +9,7 @@ public class PhoneTest {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		PhoneDao phonedao = new PhoneDao();
-		List<PersonVo> pList =phonedao.getPersonList();
+		List<PersonVo> pList = phonedao.getPersonList();
 		System.out.println(pList.toString());
 		
 		/*
